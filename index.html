@@ -11,6 +11,23 @@
     <!-- Loading a selection of high-quality Devanagari + Latin fonts for the demo -->
     <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Rozha+One&family=Rajdhani:wght@300;400;500;600;700&family=Kalam:wght@300;400;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+      /* Local Typography System */
+      @font-face {
+        font-family: 'AksharaHindLocal';
+        src: url('/fonts/akshara-hind/regular.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'AksharaHindLocal';
+        src: url('/fonts/akshara-hind/bold.woff2') format('woff2');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+
       /* Smooth transitions for preview scaling */
       .font-preview-container {
         transition: all 0.3s ease-in-out;

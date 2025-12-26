@@ -5,14 +5,14 @@ export const FONTS: Font[] = [
   {
     id: 'hind',
     name: 'Hind Akshara',
-    family: "'Hind', sans-serif",
+    family: "'AksharaHindLocal', 'Hind', sans-serif",
     scripts: [Script.HINDI, Script.MIXED],
     category: Category.SANS,
-    weights: [300, 400, 500, 600, 700],
+    weights: [400, 700],
     licenseType: 'OFL',
     price: 0,
-    description: 'A robust Devanagari UI font designed for clarity in small sizes.',
-    tone: ['Modern', 'Clean', 'Professional']
+    description: 'A robust Devanagari UI font served locally for maximum performance and reliability.',
+    tone: ['Modern', 'Clean', 'Professional', 'Local']
   },
   {
     id: 'rozha',
@@ -81,7 +81,7 @@ export const PAIRINGS: FontPairing[] = [
     id: 'p1',
     headlineFontId: 'rozha',
     bodyFontId: 'hind',
-    description: 'Elegant high-contrast display for headlines paired with hyper-readable UI sans for body text.',
+    description: 'Elegant high-contrast display for headlines paired with hyper-readable local UI sans for body text.',
     tags: ['Editorial', 'Luxury', 'Bilingual Blog']
   },
   {
@@ -95,7 +95,7 @@ export const PAIRINGS: FontPairing[] = [
     id: 'p3',
     headlineFontId: 'lora',
     bodyFontId: 'hind',
-    description: 'Classic English serif paired with a sturdy Devanagari sans-serif for academic or literary content.',
+    description: 'Classic English serif paired with a sturdy local Devanagari sans-serif for academic or literary content.',
     tags: ['Scholarly', 'Classic', 'Traditional']
   }
 ];
