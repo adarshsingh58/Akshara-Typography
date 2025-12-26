@@ -1,10 +1,11 @@
 
 const BACKEND_URL = 'http://localhost:3000/api';
-const MOCK_TOKEN = 'Bearer akshara_demo_token_12345';
+// In a real app, this would be dynamic after login
+const MOCK_IDENTITY_TOKEN = 'Bearer USR-AKSHARA-101';
 
 const getHeaders = () => ({
   'Content-Type': 'application/json',
-  'Authorization': MOCK_TOKEN
+  'Authorization': MOCK_IDENTITY_TOKEN
 });
 
 export const getPairingInsights = async (headlineFontName: string, bodyFontName: string) => {
@@ -22,7 +23,7 @@ export const getPairingInsights = async (headlineFontName: string, bodyFontName:
 };
 
 export const createLicenseSession = async (fontId: string, licenseType: string) => {
-  const response = await fetch(`${BACKEND_URL}/license/session`, {
+  const response = await fetch(`${BACKEND_URL}/license/provision`, {
     method: 'POST',
     headers: getHeaders(),
     body: JSON.stringify({ fontId, licenseType })
@@ -30,8 +31,8 @@ export const createLicenseSession = async (fontId: string, licenseType: string) 
   return response.json();
 };
 
-export const getDownloadLink = async (fontId: string) => {
-  const response = await fetch(`${BACKEND_URL}/download/${fontId}`, {
+export const getSecureDownloadLink = async (fontId: string) => {
+  const response = await fetch(`${BACKEND_URL}/delivery/${fontId}`, {
     headers: getHeaders()
   });
   return response.json();

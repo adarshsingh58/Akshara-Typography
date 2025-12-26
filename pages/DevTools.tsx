@@ -4,57 +4,68 @@ import React from 'react';
 const DevTools: React.FC = () => (
   <div className="max-w-4xl mx-auto px-4 py-12">
     <h1 className="text-4xl font-bold mb-4">Developer Tools</h1>
-    <p className="text-slate-500 mb-12 text-xl">Ready-to-use snippets and performance tips for bilingual font delivery.</p>
+    <p className="text-slate-500 mb-12 text-xl">Implement domain-bound delivery and traceable assets.</p>
 
     <div className="space-y-12">
       <section>
-        <h2 className="text-2xl font-bold mb-6">Standard @font-face</h2>
-        <div className="bg-slate-900 text-slate-100 p-6 rounded-2xl font-mono text-sm overflow-x-auto">
+        <div className="flex items-center gap-3 mb-6">
+          <h2 className="text-2xl font-bold">Domain-Bound Webfont</h2>
+          <span className="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-widest">Recommended for Web</span>
+        </div>
+        <p className="text-slate-600 mb-4 text-sm">
+          Akshara's Web Tier delivery checks the <code>Origin</code> of the request. No tokens are needed in the URL, preventing leakage while enforcing license compliance via CORS.
+        </p>
+        <div className="bg-slate-900 text-slate-100 p-6 rounded-2xl font-mono text-sm overflow-x-auto border-4 border-slate-800">
           <pre>{`@font-face {
   font-family: 'AksharaHind';
-  src: url('https://cdn.akshara.in/fonts/hind-v2.woff2') format('woff2');
+  /* Managed delivery with domain verification */
+  src: url('https://api.akshara.in/webfonts/hind/regular.woff2') format('woff2');
   font-weight: 400;
   font-display: swap;
-  unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9;
 }`}</pre>
         </div>
       </section>
 
       <section>
-        <h2 className="text-2xl font-bold mb-6">CSS Custom Properties</h2>
+        <div className="flex items-center gap-3 mb-6">
+          <h2 className="text-2xl font-bold">Traceable Asset Download</h2>
+          <span className="bg-indigo-100 text-indigo-700 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-widest">App / Print Tier</span>
+        </div>
+        <p className="text-slate-600 mb-4 text-sm">
+          Downloads are gated by identity and license checks. The API generates a single-use timed link for the requester.
+        </p>
         <div className="bg-slate-900 text-slate-100 p-6 rounded-2xl font-mono text-sm overflow-x-auto">
-          <pre>{`:root {
-  --font-headline: 'AksharaRozha', 'AksharaHind', serif;
-  --font-body: 'AksharaHind', 'Inter', sans-serif;
-}
+          <pre>{`// 1. Authenticate with your Identity Token
+// 2. Request delivery endpoint
+const { url } = await fetch('/api/delivery/hind_bold', {
+  headers: { 'Authorization': 'Bearer YOUR_UID' }
+}).then(r => r.json());
 
-h1 { font-family: var(--font-headline); }
-p { font-family: var(--font-body); }`}</pre>
+// 3. Link is valid for 60 seconds
+window.location.href = url;`}</pre>
         </div>
       </section>
 
       <div className="grid md:grid-cols-2 gap-8">
-        <div className="border border-slate-200 p-6 rounded-2xl bg-white shadow-sm">
+        <div className="border border-slate-200 p-6 rounded-2xl bg-white shadow-sm border-l-4 border-l-indigo-600">
           <h3 className="font-bold mb-3 flex items-center gap-2">
-            <span className="text-indigo-500">⚡</span> Performance Checklist
+            <span className="text-indigo-500">🛡️</span> Security Headers
           </h3>
-          <ul className="space-y-3 text-sm text-slate-600">
-            <li className="flex gap-2"><span>•</span> Use WOFF2 for smallest file sizes.</li>
-            <li className="flex gap-2"><span>•</span> Implement <code>unicode-range</code> for script-specific loading.</li>
-            <li className="flex gap-2"><span>•</span> Preload critical weights in <code>&lt;head&gt;</code>.</li>
-            <li className="flex gap-2"><span>•</span> Use <code>font-display: swap</code> to prevent FOIT.</li>
-          </ul>
-        </div>
-        <div className="border border-slate-200 p-6 rounded-2xl bg-white shadow-sm">
-          <h3 className="font-bold mb-3 flex items-center gap-2">
-            <span className="text-indigo-500">🌍</span> Subsetting Strategy
-          </h3>
-          <p className="text-sm text-slate-600 mb-4">
-            Our API allows you to request only the characters you need for static landing pages.
+          <p className="text-xs text-slate-600 space-y-2">
+            Our gateway strictly enforces:
+            <br/><br/>
+            <code>Access-Control-Allow-Origin</code> matching your license.
+            <br/><br/>
+            <code>X-Content-Type-Options: nosniff</code>
           </p>
-          <code className="text-[10px] bg-slate-100 p-2 rounded block">
-            GET /api/v1/subset?font=hind&text=नमस्ते
-          </code>
+        </div>
+        <div className="border border-slate-200 p-6 rounded-2xl bg-white shadow-sm border-l-4 border-l-green-600">
+          <h3 className="font-bold mb-3 flex items-center gap-2">
+            <span className="text-green-500">📜</span> Legal Audit Trail
+          </h3>
+          <p className="text-xs text-slate-600">
+            Every webfont fetch and asset download is logged with IP and Referer data. In the event of license misuse, specific fingerprints can be revoked instantly.
+          </p>
         </div>
       </div>
     </div>

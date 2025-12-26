@@ -33,4 +33,22 @@ export interface FontPairing {
   tags: string[];
 }
 
+export interface User {
+  id: string;
+  email: string;
+  name: string;
+}
+
+export interface License {
+  id: string;
+  userId: string;
+  fontId: string;
+  licenseType: string;
+  scope: 'web' | 'app' | 'print' | 'all';
+  domains: string[];
+  issuedAt: Date;
+  status: 'active' | 'revoked';
+  fingerprint: string;
+}
+
 export type PreviewContext = 'blog' | 'landing' | 'mobile' | 'ui';
